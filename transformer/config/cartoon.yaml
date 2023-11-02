@@ -1,0 +1,33 @@
+io:
+  logdir: logs/
+  dataname: cartoon
+  num_workers: 4
+  tensorboard_port: 0
+  validation_interval: 70000 #10000
+  visual_num: 2
+  resume_from:  # ckpt path when the program was stopped by accident
+  model_initialize_file:
+
+model:
+  num_classes: 25
+  heads: 16
+#  layers: 6
+  depth: 6
+  mlp_dim: 2048
+  dropout: 0.1
+  emb_dropout: 0.1
+  pool: cls # cls or mean
+  batch_size: 200
+  eval_batch_size: 200
+  label_smoothing: False
+  use_tb: True
+
+
+optim:
+  name: Adam
+  lr_scheduler: warmUpCos_step # single_step, warmUpSingle_step, warmUpCos_step, multi_step
+  lr: 4.0e-4
+  amsgrad: True
+  weight_decay: 1.0e-4
+  max_epoch: 100
+  lr_decay_epoch: [30,40]

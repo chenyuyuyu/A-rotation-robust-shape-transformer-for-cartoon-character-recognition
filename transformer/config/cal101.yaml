@@ -1,0 +1,35 @@
+io:
+  logdir: logs/
+  dataname: cal101
+  num_workers: 4
+  tensorboard_port: 0
+  validation_interval: 70000 #10000
+  visual_num: 2
+  resume_from:  # ckpt path when the program was stopped by accident
+  model_initialize_file:
+
+model:
+  dim: 154 #[60,98,126,144,150,154] sum:732
+  dist: True
+  num_classes: 101
+  heads: 16
+#  layers: 6
+  depth: 6
+  mlp_dim: 2048
+  dropout: 0.1
+  emb_dropout: 0.1
+  pool: cls # cls or mean
+  batch_size: 256
+  eval_batch_size: 256
+  label_smoothing: False
+  use_tb: True
+
+
+optim:
+  name: Adam
+  lr_scheduler: warmUpCos_step # single_step, warmUpSingle_step, warmUpCos_step, multi_step
+  lr: 4.0e-4
+  amsgrad: True
+  weight_decay: 1.0e-4
+  max_epoch: 100
+  lr_decay_epoch: [30,40]
